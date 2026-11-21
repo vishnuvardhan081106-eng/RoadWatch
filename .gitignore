@@ -1,0 +1,53 @@
+# Virtual environments
+.venv/
+.venv*/
+venv/
+ENV/
+env/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Expo & Web builds
+.expo/
+dist/
+web-build/
+
+# Native builds
+android/
+ios/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.yolo/
+
+# Sensitive secrets & credentials
+.env
+.env*.local
+*.env
+!.env.example
+
+# Large model binaries (downloaded automatically via INSTALL_REQUIREMENTS.cmd)
+*.pt
+Backend/models/*.pt
+Backend/models/road_damage_yolov8s.pt
+
+# SQLite databases
+*.sqlite3
+*.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS artifacts
+.DS_Store
+Thumbs.db

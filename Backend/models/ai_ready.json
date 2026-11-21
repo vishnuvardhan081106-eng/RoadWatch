@@ -1,0 +1,20 @@
+{
+  "repository": "SreekarAditya/yolo-rdd2022-benchmark",
+  "revision": "885af172a1a1fa4e980627b63bb0b23c43439168",
+  "remote_file": "yolo-rdd2022-benchmark/yolov8s_seed0_best.pt",
+  "sha256": "565aae6915e34e4f7f4c44dac0bdcf9fff21b83c4adc74cc97ca09cc31882ce8",
+  "classes": [
+    "longitudinal_crack",
+    "transverse_crack",
+    "alligator_crack",
+    "pothole"
+  ],
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "ultralytics": "8.4.216",
+    "fastapi": "0.165.0",
+    "Pillow": "12.3.0"
+  },
+  "verification": "Model loaded and the actual backend detection adapter ran on a synthetic gray image. This is not an accuracy evaluation."
+}

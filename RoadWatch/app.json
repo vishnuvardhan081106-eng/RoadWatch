@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "RoadWatch",
+    "slug": "roadwatch-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F6F7F2",
+    "scheme": "roadwatch",
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.mobilecomp.roadwatch" },
+    "android": { "package": "com.mobilecomp.roadwatch", "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION", "CAMERA"] },
+    "web": { "name": "RoadWatch", "shortName": "RoadWatch", "themeColor": "#20271F", "backgroundColor": "#F6F7F2", "bundler": "metro" },
+    "plugins": [
+      ["expo-image-picker", { "photosPermission": "Choose a road damage photo to include in your report.", "cameraPermission": "Photograph road damage for your report.", "microphonePermission": false }],
+      ["expo-location", { "locationWhenInUsePermission": "Attach your current GPS coordinates to a road damage report." }]
+    ]
+  }
+}
