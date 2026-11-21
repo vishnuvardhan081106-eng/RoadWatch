@@ -4,7 +4,7 @@ export type ReportStatus = 'Submitted' | 'In review' | 'Resolved';
 export type SyncState = 'Local' | 'Pending' | 'Synced';
 export interface Coordinates { latitude: number; longitude: number; accuracy?: number | null }
 export interface Detection { label: 'pothole' | 'crack' | 'surface_damage'; confidence: number; left: number; top: number; right: number; bottom: number }
-export interface Prediction { damage: Damage; severity: Severity; confidence?: number; source: 'demo' | 'model' | 'manual'; detections?: Detection[] }
+export interface Prediction { damage: Damage; severity: Severity; confidence?: number; source: 'demo' | 'model' | 'manual'; detections?: Detection[]; reason?: string }
 export interface RoadReport {
   id: string; remoteId?: string; title: string; address: string; notes: string;
   coordinates: Coordinates; photo?: string; prediction: Prediction;

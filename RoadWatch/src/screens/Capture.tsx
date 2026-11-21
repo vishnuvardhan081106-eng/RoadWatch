@@ -114,7 +114,18 @@ export default function Capture({ onClose, onDetail, notify }: { onClose: () => 
       {draft.prediction.confidence !== undefined && <View style={[t.card, { gap: 10 }]}><View style={t.between}><Text style={t.fieldLabel}>{draft.prediction.source === 'demo' ? 'Sample confidence' : 'Model confidence'}</Text><Text style={t.heading}>{Math.round(draft.prediction.confidence * 100)}%</Text></View><View style={{ height: 5, backgroundColor: C.pale, borderRadius: 4 }}><View style={{ height: 5, backgroundColor: C.olive, width: `${Math.round(draft.prediction.confidence * 100)}%`, borderRadius: 4 }} /></View></View>}
       <View style={{ gap: 10 }}><Text style={t.fieldLabel}>Damage type</Text><View style={[t.row, { flexWrap: 'wrap', gap: 8 }]}>{DAMAGE_TYPES.map(damage => <Chip key={damage} title={damage} selected={draft.prediction!.damage === damage} onPress={() => patch({ prediction: { ...draft.prediction!, damage, confidence: undefined, source: 'manual', detections: undefined } })} />)}</View></View>
       <View style={{ gap: 10 }}><Text style={t.fieldLabel}>Severity</Text><View style={[t.row, { gap: 8 }]}>{SEVERITIES.map(severity => <Chip key={severity} title={severity} selected={draft.prediction!.severity === severity} onPress={() => patch({ prediction: { ...draft.prediction!, severity, confidence: undefined, source: 'manual' } })} />)}</View></View>
-      <Note>Classification supports reporting. It does not measure pothole depth or certify road safety.</Note><Button title="Continue to location" icon="arrow-right" onPress={() => { setStep(3); setError(''); }} />
+      {draft.prediction.reason ? (
+        <View style={[t.card, { backgroundColor: '#F0F4E8', borderColor: '#DCE4CF', gap: 6 }]}>
+          <View style={[t.row, { gap: 6 }]}>
+            <Icon name="check-circle" size={14} color={C.olive} />
+            <Text style={{ fontSize: 11, fontWeight: '700', color: C.ink, letterSpacing: 0.5 }}>WHY AI CHOSE THIS</Text>
+          </View>
+          <Text style={{ fontSize: 12, color: '#2B3322', lineHeight: 18, fontWeight: '500' }}>
+            {draft.prediction.reason}
+          </Text>
+        </View>
+      ) : null}
+      <Note>Classification supports reporting. It does not measure pothole depth or certify road safety.</Note><Button title="Continue to location" icon="arrow-right" onPress={() => { if (!draft.notes.trim() && draft.prediction?.reason) patch({ notes: draft.prediction.reason }); setStep(3); setError(''); }} />
     </>}
     {step === 3 && <>
       <View style={[t.card, { gap: 15 }]}>

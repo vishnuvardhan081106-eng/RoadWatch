@@ -310,7 +310,11 @@ def detect(photo: UploadFile):
     if not detections:
         return {'damage_type': None, 'confidence': None, 'detections': [], 'message': 'No supported road damage was detected. Retake the photo or review it manually.'}
     best = max(range(len(detections)), key=lambda i: detections[i]['confidence'])
-    return {'damage_type': classes[best], 'confidence': detections[best]['confidence'], 'severity': 'Medium', 'severity_source': 'review_required', 'detections': detections}
+    best_damage = classes[best]
+    best_conf = int(detections[best]['confidence'] * 100)
+    cnt = len(detections)
+    reason = f"Identified {best_damage} with {best_conf}% pattern confidence ({cnt} damage region{'s' if cnt > 1 else ''} detected across pavement)."
+    return {'damage_type': best_damage, 'confidence': detections[best]['confidence'], 'severity': 'Medium', 'severity_source': 'review_required', 'detections': detections, 'message': reason}
 
 
 @app.post("/api/v1/reports", status_code=201, response_model=Report)

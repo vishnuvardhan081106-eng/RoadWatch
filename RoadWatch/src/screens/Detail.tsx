@@ -26,7 +26,8 @@ export default function Detail({ report, onClose, notify }: { report: RoadReport
       ['Coordinates', `${report.coordinates.latitude.toFixed(5)}, ${report.coordinates.longitude.toFixed(5)}`],
       ['Storage', report.sync],
     ].map(([key, value]) => <View key={key} style={t.between}><Text style={{ fontSize: 11, color: C.muted }}>{key}</Text><Text style={{ fontSize: 11, color: C.ink, maxWidth: '67%', textAlign: 'right' }}>{value}</Text></View>)}
-      {report.notes ? <View style={{ borderTopWidth: 1, borderColor: C.line, paddingTop: 12, gap: 6 }}><Text style={t.fieldLabel}>Field notes</Text><Text style={t.body}>{report.notes}</Text></View> : null}
+      {report.prediction.reason ? <View style={{ borderTopWidth: 1, borderColor: C.line, paddingTop: 12, gap: 6 }}><Text style={t.fieldLabel}>Why AI chose this</Text><Text style={[t.body, { color: '#2B3322' }]}>{report.prediction.reason}</Text></View> : null}
+      {report.notes && report.notes !== report.prediction.reason ? <View style={{ borderTopWidth: 1, borderColor: C.line, paddingTop: 12, gap: 6 }}><Text style={t.fieldLabel}>Field notes</Text><Text style={t.body}>{report.notes}</Text></View> : null}
     </View>
     <Button title="Open location in maps" icon="navigation" onPress={openMap} secondary />
   </ScrollView>;

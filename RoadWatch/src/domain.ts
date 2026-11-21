@@ -40,7 +40,8 @@ export function normalizePrediction(raw: any): Prediction {
   const confidence = Number.isFinite(rawConfidence) && rawConfidence >= 0 && rawConfidence <= 100 ? (rawConfidence > 1 ? rawConfidence / 100 : rawConfidence) : undefined;
   const severity = SEVERITIES.find(s => s.toLowerCase() === String(p.severity).toLowerCase()) ?? 'Medium';
   const detections = (raw?.detections ?? p.detections) as Prediction['detections'];
-  return { damage, confidence, severity, source: 'model', ...(Array.isArray(detections) && detections.length ? { detections } : {}) };
+  const reason = typeof raw?.message === 'string' && raw.message.trim() ? raw.message.trim() : typeof p.message === 'string' && p.message.trim() ? p.message.trim() : undefined;
+  return { damage, confidence, severity, source: 'model', ...(reason ? { reason } : {}), ...(Array.isArray(detections) && detections.length ? { detections } : {}) };
 }
 export function filterReports(reports: RoadReport[], query: string, status: string) {
   const term = query.trim().toLowerCase();
